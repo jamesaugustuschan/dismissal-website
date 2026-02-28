@@ -278,7 +278,7 @@
 
         .day-row {
             display: grid;
-            grid-template-columns: 100px 1fr 1fr 1fr;
+            grid-template-columns: 100px 1fr 1fr;
             align-items: center;
             gap: 0;
             border-bottom: 1px solid var(--cream-dark);
@@ -510,11 +510,13 @@
                         <input type="text" id="lastName" name="lastName" required placeholder="Last name">
                         <span class="field-error" id="err-lastName">Please fill in this field.</span>
                     </div>
+                <!--
                     <div class="field">
                         <label for="birthdayDate">Child's Date of Birth</label>
                         <input type="date" id="birthdayDate" name="birthdayDate" required>
                         <span class="field-error" id="err-birthdayDate">Please fill in this field.</span>
                     </div>
+                -->
                 </div>
             </div>
         </div>
@@ -571,9 +573,7 @@
                     <div class="day-field" style="background:transparent;">
                         <label>Pickup Time</label>
                     </div>
-                    <div class="day-field" style="background:transparent;">
-                        <label>Location</label>
-                    </div>
+                   
                 </div>
 
                 <!-- Monday -->
@@ -583,8 +583,11 @@
                         <label for="mondayPickupType">Type</label>
                         <div class="day-select-wrap">
                             <select name="mondayPickupType" id="mondayPickupType">
-                                <option value="bus">Bus</option>
-                                <option value="parent">Parent</option>
+                                <option value="downtownBus">Downtown SNT Bus</option>
+                                <option value="westsideBus">West Side SNT Bus</option>
+                                <option value="uptownBus">Uptown SNT Bus</option>
+                                <option value="privateDowntown">Private Downtown Bus</option>
+                                <option value="pickup">Pickup</option>
                                 <option value="selfdismissal">Self Dismissal</option>
                             </select>
                         </div>
@@ -594,16 +597,7 @@
                         <input type="time" id="mondayTime" name="mondayTime" required>
                         <span class="field-error" id="err-mondayTime">Please fill in this field.</span>
                     </div>
-                    <div class="day-field">
-                        <label for="mondayLocation">Location</label>
-                        <div class="day-select-wrap">
-                            <select name="mondayLocation" id="mondayLocation">
-                                <option value="frontEntrance">Front Entrance</option>
-                                <option value="backEntrance">Back Entrance</option>
-                                <option value="selfdismissal">Self Dismissal</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <!-- Tuesday -->
@@ -613,8 +607,11 @@
                         <label for="tuesdayPickupType">Type</label>
                         <div class="day-select-wrap">
                             <select name="tuesdayPickupType" id="tuesdayPickupType">
-                                <option value="bus">Bus</option>
-                                <option value="parent">Parent</option>
+                                <option value="downtownBus">Downtown SNT Bus</option>
+                                <option value="westsideBus">West Side SNT Bus</option>
+                                <option value="uptownBus">Uptown SNT Bus</option>
+                                <option value="privateDowntown">Private Downtown Bus</option>
+                                <option value="Pickup">Pickup</option>
                                 <option value="selfdismissal">Self Dismissal</option>
                             </select>
                         </div>
@@ -624,15 +621,7 @@
                         <input type="time" id="tuesdayTime" name="tuesdayTime" required>
                         <span class="field-error" id="err-tuesdayTime">Please fill in this field.</span>
                     </div>
-                    <div class="day-field">
-                        <label for="tuesdayLocation">Location</label>
-                        <div class="day-select-wrap">
-                            <select name="tuesdayLocation" id="tuesdayLocation">
-                                <option value="frontEntrance">Front Entrance</option>
-                                <option value="backEntrance">Back Entrance</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <!-- Wednesday -->
@@ -642,8 +631,11 @@
                         <label for="wednesdayPickupType">Type</label>
                         <div class="day-select-wrap">
                             <select name="wednesdayPickupType" id="wednesdayPickupType">
-                                <option value="bus">Bus</option>
-                                <option value="parent">Parent</option>
+                                <option value="downtownBus">Downtown SNT Bus</option>
+                                <option value="westsideBus">West Side SNT Bus</option>
+                                <option value="uptownBus">Uptown SNT Bus</option>
+                                <option value="privateDowntown">Private Downtown Bus</option>
+                                <option value="Pickup">Pickup</option>
                                 <option value="selfdismissal">Self Dismissal</option>
                             </select>
                         </div>
@@ -653,15 +645,7 @@
                         <input type="time" id="wednesdayTime" name="wednesdayTime" required>
                         <span class="field-error" id="err-wednesdayTime">Please fill in this field.</span>
                     </div>
-                    <div class="day-field">
-                        <label for="wednesdayLocation">Location</label>
-                        <div class="day-select-wrap">
-                            <select name="wednesdayLocation" id="wednesdayLocation">
-                                <option value="frontEntrance">Front Entrance</option>
-                                <option value="backEntrance">Back Entrance</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <!-- Thursday -->
@@ -671,8 +655,11 @@
                         <label for="thursdayPickupType">Type</label>
                         <div class="day-select-wrap">
                             <select name="thursdayPickupType" id="thursdayPickupType">
-                                <option value="bus">Bus</option>
-                                <option value="parent">Parent</option>
+                                <option value="downtownBus">Downtown SNT Bus</option>
+                                <option value="westsideBus">West Side SNT Bus</option>
+                                <option value="uptownBus">Uptown SNT Bus</option>
+                                <option value="privateDowntown">Private Downtown Bus</option>
+                                <option value="Pickup">Pickup</option>
                                 <option value="selfdismissal">Self Dismissal</option>
                             </select>
                         </div>
@@ -682,15 +669,7 @@
                         <input type="time" id="thursdayTime" name="thursdayTime" required>
                         <span class="field-error" id="err-thursdayTime">Please fill in this field.</span>
                     </div>
-                    <div class="day-field">
-                        <label for="thursdayLocation">Location</label>
-                        <div class="day-select-wrap">
-                            <select name="thursdayLocation" id="thursdayLocation">
-                                <option value="frontEntrance">Front Entrance</option>
-                                <option value="backEntrance">Back Entrance</option>
-                            </select>
-                        </div>
-                    </div>
+         
                 </div>
 
                 <!-- Friday -->
@@ -700,8 +679,11 @@
                         <label for="fridayPickupType">Type</label>
                         <div class="day-select-wrap">
                             <select name="fridayPickupType" id="fridayPickupType">
-                                <option value="bus">Bus</option>
-                                <option value="parent">Parent</option>
+                                <option value="downtownBus">Downtown SNT Bus</option>
+                                <option value="westsideBus">West Side SNT Bus</option>
+                                <option value="uptownBus">Uptown SNT Bus</option>
+                                <option value="privateDowntown">Private Downtown Bus</option>
+                                <option value="Pickup">Pickup</option>
                                 <option value="selfdismissal">Self Dismissal</option>
                             </select>
                         </div>
@@ -711,15 +693,7 @@
                         <input type="time" id="fridayTime" name="fridayTime" required>
                         <span class="field-error" id="err-fridayTime">Please fill in this field.</span>
                     </div>
-                    <div class="day-field">
-                        <label for="fridayLocation">Location</label>
-                        <div class="day-select-wrap">
-                            <select name="fridayLocation" id="fridayLocation">
-                                <option value="frontEntrance">Front Entrance</option>
-                                <option value="backEntrance">Back Entrance</option>
-                            </select>
-                        </div>
-                    </div>
+               
                 </div>
 
             </div>
