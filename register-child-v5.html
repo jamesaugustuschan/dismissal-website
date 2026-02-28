@@ -755,9 +755,10 @@
         let lastName = document.getElementById('lastName').value.trim();
         if (lastName === "") { canInsert = false; showError('err-lastName'); }
 
+/*
         let birthdayDate = document.getElementById('birthdayDate').value;
         if (birthdayDate === "") { canInsert = false; showError('err-birthdayDate'); }
-
+*/
         let parentFirstName = document.getElementById('parentFirstName').value.trim();
         if (parentFirstName === "") { canInsert = false; showError('err-parentFirstName'); }
 
@@ -786,41 +787,41 @@
         let mondayPickupType = document.getElementById('mondayPickupType').value;
         let mondayTime = document.getElementById('mondayTime').value;
         if (mondayTime === "") { canInsert = false; showError('err-mondayTime'); }
-        let mondayLocation = document.getElementById('mondayLocation').value;
+       /* let mondayLocation = document.getElementById('mondayLocation').value; */
 
         let tuesdayPickupType = document.getElementById('tuesdayPickupType').value;
         let tuesdayTime = document.getElementById('tuesdayTime').value;
         if (tuesdayTime === "") { canInsert = false; showError('err-tuesdayTime'); }
-        let tuesdayLocation = document.getElementById('tuesdayLocation').value;
+        /*let tuesdayLocation = document.getElementById('tuesdayLocation').value;*/
 
         let wednesdayPickupType = document.getElementById('wednesdayPickupType').value;
         let wednesdayTime = document.getElementById('wednesdayTime').value;
         if (wednesdayTime === "") { canInsert = false; showError('err-wednesdayTime'); }
-        let wednesdayLocation = document.getElementById('wednesdayLocation').value;
+        /*let wednesdayLocation = document.getElementById('wednesdayLocation').value;*/
 
         let thursdayPickupType = document.getElementById('thursdayPickupType').value;
         let thursdayTime = document.getElementById('thursdayTime').value;
         if (thursdayTime === "") { canInsert = false; showError('err-thursdayTime'); }
-        let thursdayLocation = document.getElementById('thursdayLocation').value;
+        /*let thursdayLocation = document.getElementById('thursdayLocation').value;*/
 
         let fridayPickupType = document.getElementById('fridayPickupType').value;
         let fridayTime = document.getElementById('fridayTime').value;
         if (fridayTime === "") { canInsert = false; showError('err-fridayTime'); }
-        let fridayLocation = document.getElementById('fridayLocation').value;
+        /*let fridayLocation = document.getElementById('fridayLocation').value;*/
 
         if (canInsert) {
             const {data, error}=await supabase
             .from('test2')
-            .insert({name:firstName, last_name:lastName, birthday_date:birthdayDate, 
+            .insert({name:firstName, last_name:lastName, /*birthday_date:birthdayDate,*/ 
                 parent_first_name:parentFirstName, parent_last_name:parentLastName, 
                 parent_phone:parentPhone, parent_email:parentEmail, monday_pickup_type:mondayPickupType, 
-                monday_time:mondayTime, monday_location:mondayLocation, 
+                monday_time:mondayTime, /*monday_location:mondayLocation, */
                 tuesday_pickup_type:tuesdayPickupType, tuesday_time:tuesdayTime, 
-                tuesday_location:tuesdayLocation, wednesday_pickup_type:wednesdayPickupType, 
-                wednesday_time:wednesdayTime, wednesday_location:wednesdayLocation, 
+                /*tuesday_location:tuesdayLocation,*/ wednesday_pickup_type:wednesdayPickupType, 
+                wednesday_time:wednesdayTime, /*wednesday_location:wednesdayLocation, */
                 thursday_pickup_type:thursdayPickupType, thursday_time:thursdayTime, 
-                thursday_location:thursdayLocation, friday_pickup_type:fridayPickupType, 
-                friday_time:fridayTime, friday_location:fridayLocation
+                /*thursday_location:thursdayLocation, */friday_pickup_type:fridayPickupType, 
+                friday_time:fridayTime /*, friday_location:fridayLocation*/
             });
 
             if (error) {
