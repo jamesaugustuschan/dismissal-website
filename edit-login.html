@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Registration — Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #7b1c2e;
+            --navy-dark: #5c1220;
+            --navy-light: #8f2236;
+            --gold: #c4a882;
+            --gold-light: #d6bfa0;
+            --cream: #faf7f2;
+            --cream-dark: #ede6d8;
+            --white: #ffffff;
+            --text-body: #3a3228;
+            --text-muted: #8a7a6a;
+            --border: #d9cfc0;
+            --error: #a01020;
+            --success: #2d6a4f;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-header {
+            background-color: var(--navy);
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-header .school-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .site-header .school-name span { color: var(--gold); }
+
+        .header-tag {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: linear-gradient(135deg, #d4af37 0%, #b5956e 100%);
+            padding: 64px 40px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.05) 60px, rgba(255,255,255,0.05) 61px);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 em { font-style: italic; color: rgba(255,255,255,0.88); }
+
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            font-style: italic;
+            max-width: 460px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .hero-divider {
+            width: 48px;
+            height: 2px;
+            background: rgba(255,255,255,0.6);
+            margin: 22px auto 0;
+        }
+
+        .page-body {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 56px 24px 80px;
+        }
+
+        .login-wrapper { max-width: 480px; width: 100%; }
+
+        .card {
+            background: var(--white);
+            border-radius: 2px;
+            box-shadow: 0 2px 24px rgba(26,39,68,0.08), 0 1px 4px rgba(26,39,68,0.04);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            background-color: var(--navy);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-header-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-header-icon svg { width: 14px; height: 14px; fill: var(--navy); }
+
+        .card-header h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .card-body { padding: 36px 36px 32px; }
+
+        .intro-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .field:last-of-type { margin-bottom: 0; }
+
+        .field label {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .field label .req { color: var(--navy); margin-left: 2px; }
+
+        .field input {
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 12px 14px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.93rem;
+            color: var(--text-body);
+            background: var(--cream);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(123,28,46,0.08);
+            background: var(--white);
+        }
+
+        .field input.invalid { border-color: var(--error); background: #fff8f8; }
+
+        .field-error {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            color: var(--error);
+            display: none;
+        }
+
+        .field-error.visible { display: block; }
+
+        .submit-area { margin-top: 28px; }
+
+        .submit-btn {
+            width: 100%;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--white);
+            background: var(--navy);
+            border: 2px solid var(--navy);
+            border-radius: 2px;
+            padding: 16px 32px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: transparent;
+            color: var(--navy);
+            box-shadow: 0 4px 20px rgba(26,39,68,0.18);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .global-error {
+            background: #fff0f0;
+            border: 1px solid rgba(160,16,32,0.25);
+            border-radius: 2px;
+            padding: 14px 18px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            color: var(--error);
+            margin-top: 20px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .global-error.visible { display: block; }
+
+        .help-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+
+        .site-footer {
+            background: var(--navy-dark);
+            padding: 24px 40px;
+            text-align: center;
+        }
+
+        .site-footer p {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 40px 24px 36px; }
+            .card-body { padding: 24px 20px 20px; }
+            .site-header { padding: 14px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="school-name"><span>Saint David's</span> School</div>
+        <a href="https://www.saintdavids.org" class="header-tag" target="_blank">Home</a>
+    </header>
+
+    <div class="hero">
+        <div class="hero-eyebrow">Dismissal Services</div>
+        <h1>Edit <em>Registration</em></h1>
+        <p class="hero-sub">Please verify your identity to access and update your child's dismissal information.</p>
+        <div class="hero-divider"></div>
+    </div>
+
+    <div class="page-body">
+        <div class="login-wrapper">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    </div>
+                    <h3>Identity Verification</h3>
+                </div>
+                <div class="card-body">
+                    <p class="intro-text">Enter the email address, phone number, and your child's name associated with the registration. All fields must match our records to proceed.</p>
+
+                    <div class="field">
+                        <label for="loginEmail">Email Address <span class="req">*</span></label>
+                        <input type="email" id="loginEmail" name="loginEmail" placeholder="parent@example.com" autocomplete="email">
+                        <span class="field-error" id="err-loginEmail">Please enter a valid email address.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="loginPhone">Phone Number <span class="req">*</span></label>
+                        <input type="tel" id="loginPhone" name="loginPhone" placeholder="555-867-5309" maxlength="12" autocomplete="tel">
+                        <span class="field-error" id="err-loginPhone">Please enter a valid 10-digit phone number.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="loginChildFirst">Child's First Name <span class="req">*</span></label>
+                        <input type="text" id="loginChildFirst" name="loginChildFirst" placeholder="First name" autocomplete="off">
+                        <span class="field-error" id="err-loginChildFirst">Please enter your child's first name.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="loginChildLast">Child's Last Name <span class="req">*</span></label>
+                        <input type="text" id="loginChildLast" name="loginChildLast" placeholder="Last name" autocomplete="off">
+                        <span class="field-error" id="err-loginChildLast">Please enter your child's last name.</span>
+                    </div>
+
+                    <div class="global-error" id="global-error">
+                        We could not find a registration matching that email address and phone number. Please double-check your information and try again, or contact the school office for assistance.
+                    </div>
+
+                    <div class="submit-area">
+                        <button class="submit-btn" id="loginBtn">Verify &amp; Continue</button>
+                    </div>
+
+                    <p class="help-text">Questions? Contact the office at <a href="mailto:admissions@saintdavids.org" style="color:var(--navy);text-decoration:none;">admissions@saintdavids.org</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Saint David's School &nbsp;·&nbsp; 12 East 89th Street, New York, NY 10128</p>
+    </footer>
+
+<script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    const supabaseUrl = 'https://qwvnafsyqyttpzvuythm.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3dm5hZnN5cXl0dHB6dnV5dGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzODYzNDUsImV4cCI6MjA3Mzk2MjM0NX0.LYoI8XkrcQie4Qn7FhcuOLa_QMYq8BJ379M6F-TSD0E';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    function formatPhone(input) {
+        let digits = input.value.replace(/\D/g, '');
+        if (digits.length > 6) {
+            digits = digits.slice(0,3) + '-' + digits.slice(3,6) + '-' + digits.slice(6,10);
+        } else if (digits.length > 3) {
+            digits = digits.slice(0,3) + '-' + digits.slice(3);
+        }
+        input.value = digits;
+    }
+
+    function showFieldError(id) {
+        document.getElementById(id).classList.add('visible');
+        const fieldId = id.replace('err-', '');
+        document.getElementById(fieldId).classList.add('invalid');
+    }
+
+    function clearAllErrors() {
+        document.querySelectorAll('.field-error').forEach(e => e.classList.remove('visible'));
+        document.querySelectorAll('.invalid').forEach(e => e.classList.remove('invalid'));
+        document.getElementById('global-error').classList.remove('visible');
+    }
+
+    async function doLogin() {
+        clearAllErrors();
+        let valid = true;
+
+        const emailVal = document.getElementById('loginEmail').value.trim();
+        const phoneVal = document.getElementById('loginPhone').value.trim();
+        const digitsOnly = phoneVal.replace(/\D/g, '');
+        const childFirstVal = document.getElementById('loginChildFirst').value.trim();
+        const childLastVal = document.getElementById('loginChildLast').value.trim();
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailVal || !emailPattern.test(emailVal)) {
+            showFieldError('err-loginEmail'); valid = false;
+        }
+        if (digitsOnly.length !== 10) {
+            showFieldError('err-loginPhone'); valid = false;
+        }
+        if (!childFirstVal) {
+            showFieldError('err-loginChildFirst'); valid = false;
+        }
+        if (!childLastVal) {
+            showFieldError('err-loginChildLast'); valid = false;
+        }
+
+        if (!valid) return;
+
+        const btn = document.getElementById('loginBtn');
+        btn.disabled = true;
+        btn.textContent = 'Verifying…';
+
+        const { data, error } = await supabase
+            .from('test2')
+            .select('*')
+            .eq('parent_email', emailVal)
+            .eq('parent_phone', digitsOnly)
+            .filter('name', 'ilike', childFirstVal)
+            .filter('last_name', 'ilike', childLastVal);
+
+        btn.disabled = false;
+        btn.textContent = 'Verify & Continue';
+
+        if (error) {
+            document.getElementById('global-error').textContent = 'A system error occurred. Please try again.';
+            document.getElementById('global-error').classList.add('visible');
+            return;
+        }
+
+        if (!data || data.length === 0) {
+            document.getElementById('global-error').classList.add('visible');
+            return;
+        }
+
+        // Match found — store record id in sessionStorage and redirect
+        const record = data[0];
+        sessionStorage.setItem('editRecordId', record.id);
+        sessionStorage.setItem('editEmail', emailVal);
+        sessionStorage.setItem('editPhone', digitsOnly);
+        window.location.href = 'edit-child.html';
+    }
+
+    // Attach event listeners inside the module (avoids inline handler scoping issues)
+    document.getElementById('loginPhone').addEventListener('input', function() { formatPhone(this); });
+    document.getElementById('loginBtn').addEventListener('click', doLogin);
+</script>
+
+</body>
+</html>
