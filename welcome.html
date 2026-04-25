@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dismissal Services – Saint David's School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --maroon: #7B1C2E;
+      --maroon-dark: #5a1220;
+      --maroon-deep: #3d0c17;
+      --gold: #C9A84C;
+      --gold-light: #e2c97e;
+      --gold-dim: rgba(201,168,76,0.18);
+      --cream: #F5F0E8;
+      --cream-dark: #ece5d6;
+      --text-dark: #2a1a1f;
+      --text-mid: #5a4a4e;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background-color: var(--maroon);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+      position: relative;
+      z-index: 10;
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      color: var(--white);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+    }
+    .nav-logo span { color: var(--gold-light); font-weight: 600; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(155deg, var(--maroon-deep) 0%, var(--maroon) 45%, #9a3a1a 100%);
+      padding: 5.5rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle cross-pattern texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Decorative radial glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.6rem;
+      animation: fadeDown 0.6s ease both;
+    }
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      color: var(--white);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      animation: fadeDown 0.6s 0.1s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: rgba(255,255,255,0.72);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      animation: fadeDown 0.6s 0.2s ease both;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1.8rem auto 0;
+      animation: fadeDown 0.6s 0.3s ease both;
+    }
+    .hero-divider span {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .hero-divider i {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.7;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      flex: 1;
+      padding: 4.5rem 1.5rem 5rem;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin-bottom: 0.6rem;
+      opacity: 0.7;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--maroon);
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.65;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 5px;
+      box-shadow: 0 4px 28px rgba(123,28,46,0.09);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: fadeUp 0.6s ease both;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:nth-child(2) { animation-delay: 0.12s; }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(123,28,46,0.18);
+    }
+    .card:hover .card-arrow { transform: translateX(4px); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-top {
+      background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
+      padding: 2rem 1.8rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gold accent strip */
+    .card-top::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+
+    .card-icon-wrap {
+      width: 54px; height: 54px;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-top h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .card-top h2 small {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      letter-spacing: 0.01em;
+      color: var(--gold-light);
+      text-transform: none;
+      margin-top: 0.2rem;
+      font-weight: 400;
+    }
+
+    .card-body {
+      padding: 1.6rem 1.8rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body p {
+      font-size: 0.91rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.6rem;
+    }
+
+    .card-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-bottom: 1.8rem;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.45;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      background: var(--maroon);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-top: 0.05rem;
+    }
+
+    .card-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: var(--maroon);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem 1.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-shadow: 0 4px 16px rgba(123,28,46,0.22);
+    }
+    .card-btn:hover { background: var(--maroon-dark); }
+
+    .card-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      max-width: 860px;
+      margin: 4rem auto 0;
+      border: none;
+      border-top: 1px solid var(--cream-dark);
+      position: relative;
+    }
+    .section-divider::after {
+      content: '✦';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--cream);
+      padding: 0 0.6rem;
+      color: var(--gold);
+      font-size: 0.65rem;
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      max-width: 860px;
+      margin: 3rem auto 0;
+      background: var(--white);
+      border-radius: 4px;
+      border-left: 4px solid var(--gold);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      box-shadow: 0 2px 12px rgba(123,28,46,0.06);
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+    .info-strip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .info-strip strong { color: var(--maroon); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.6rem;
+      font-size: 0.76rem;
+      color: var(--text-mid);
+      border-top: 1px solid var(--cream-dark);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 520px) {
+      nav { padding: 0 1.2rem; }
+      .hero { padding: 3.5rem 1.2rem 3rem; }
+      .cards { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Saint David's <span>School</span></div>
+  <div class="nav-links">
+    <a href="https://www.saintdavids.org" target="_blank">Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Dismissal Services</div>
+    <h1>Welcome to<br><em>Saint David's</em><br>Dismissal Portal</h1>
+    <p class="hero-sub">Manage your child's after-school dismissal schedule safely and easily.</p>
+    <div class="hero-divider">
+      <span></span><i></i><span></span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <p class="section-label">Choose an Option</p>
+  <h2 class="section-heading">How Can We Help You Today?</h2>
+  <p class="section-sub">New to the portal? Register your child. Returning parent? Update your existing dismissal schedule.</p>
+
+  <div class="cards">
+
+    <!-- REGISTER CARD -->
+    <a href="register.html" class="card">
+      <div class="card-top">
+        <div class="card-icon-wrap">📋</div>
+        <h2>New Registration
+          <small>Register Your Child</small>
+        </h2>
+      </div>
+      <div class="card-body">
+        <p>First time using the portal? Set up your child's dismissal schedule by completing our secure registration form.</p>
+        <div class="card-steps">
+          <div class="step"><div class="step-num">1</div><span>Complete the registration form with your child's details</span></div>
+          <div class="step"><div class="step-num">2</div><span>Provide your contact information and dismissal preferences</span></div>
+          <div class="step"><div class="step-num">3</div><span>Submit — the school office will confirm your registration</span></div>
+        </div>
+        <span class="card-btn">
+          Register Now <span class="card-arrow">→</span>
+        </span>
+      </div>
+    </a>
+
+    <!-- EDIT CARD -->
+    <a href="edit-login.html" class="card">
+      <div class="card-top">
+        <div class="card-icon-wrap">✏️</div>
+        <h2>Edit Schedule
+          <small>Update Your Child's Plan</small>
+        </h2>
+      </div>
+      <div class="card-body">
+        <p>Need to change your child's dismissal arrangements? Verify your identity and we'll send a secure link straight to your email.</p>
+        <div class="card-steps">
+          <div class="step"><div class="step-num">1</div><span>Enter your registered email and phone number</span></div>
+          <div class="step"><div class="step-num">2</div><span>Receive a secure edit link in your inbox</span></div>
+          <div class="step"><div class="step-num">3</div><span>Click the link to update your child's schedule</span></div>
+        </div>
+        <span class="card-btn">
+          Edit Schedule <span class="card-arrow">→</span>
+        </span>
+      </div>
+    </a>
+
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="info-strip">
+    <div class="info-strip-icon">ℹ️</div>
+    <div>
+      <strong>Need help?</strong> If you're experiencing any issues with the portal or need to make urgent changes to your child's dismissal, please contact the school office directly. Our staff are happy to assist you.
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Saint David's School &nbsp;|&nbsp; Dismissal Services
+</footer>
+
+</body>
+</html>
