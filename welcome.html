@@ -397,6 +397,184 @@
       .hero { padding: 3.5rem 1.2rem 3rem; }
       .cards { gap: 1.2rem; }
     }
+
+    /* ── MAGIC LINK MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(2px);
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: 5px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      animation: modalIn 0.25s ease both;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
+      padding: 1.8rem 2rem 1.5rem;
+      position: relative;
+    }
+    .modal-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .modal-header-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.7rem;
+    }
+    .modal-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .modal-header h3 small {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      letter-spacing: 0.01em;
+      color: var(--gold-light);
+      text-transform: none;
+      margin-top: 0.15rem;
+      font-weight: 400;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.22); color: var(--white); }
+
+    .modal-body { padding: 1.8rem 2rem 2rem; }
+    .modal-body p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 1.4rem;
+    }
+
+    .email-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .email-field label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--maroon);
+    }
+    .email-field input {
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 3px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .email-field input:focus {
+      outline: none;
+      border-color: var(--maroon);
+      box-shadow: 0 0 0 3px rgba(123,28,46,0.1);
+    }
+
+    .btn-send-link {
+      width: 100%;
+      background: var(--maroon);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 4px 16px rgba(123,28,46,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-send-link:hover { background: var(--maroon-dark); }
+    .btn-send-link:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+    }
+    .modal-success .success-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+    .modal-success h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--maroon);
+      margin-bottom: 0.5rem;
+    }
+    .modal-success p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 0; }
+
+    .modal-note {
+      margin-top: 1rem;
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      border-radius: 2px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+    .modal-note strong { color: var(--maroon); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #2e7d32;
+      color: var(--white);
+      padding: 0.8rem 1.4rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      z-index: 400;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
   </style>
 </head>
 <body>
@@ -429,7 +607,7 @@
   <div class="cards">
 
     <!-- REGISTER CARD -->
-    <a href="register.html" class="card">
+    <a href="#" class="card" onclick="openRegisterModal(event)">
       <div class="card-top">
         <div class="card-icon-wrap">📋</div>
         <h2>New Registration
@@ -485,6 +663,132 @@
 <footer>
   &copy; 2026 Saint David's School &nbsp;|&nbsp; Dismissal Services
 </footer>
+
+<!-- ══ REGISTER MAGIC LINK MODAL ══ -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeRegisterModal()">✕</button>
+      <div class="modal-header-icon">📋</div>
+      <h3>New Registration
+        <small>Get Your Secure Link</small>
+      </h3>
+    </div>
+    <div class="modal-body">
+      <div id="modalForm">
+        <p>Enter your email address below and we'll send you a secure magic link to complete your child's dismissal registration.</p>
+        <div class="email-field">
+          <label>Parent / Guardian Email</label>
+          <input type="email" id="registerEmail" placeholder="you@email.com"
+            onkeydown="if(event.key==='Enter') sendRegistrationLink()" />
+        </div>
+        <button class="btn-send-link" id="sendLinkBtn" onclick="sendRegistrationLink()">
+          Send My Registration Link <span>→</span>
+        </button>
+        <div class="modal-note">
+          <strong>Note:</strong> Check your inbox (and spam folder) for an email from Saint David's School. The link will take you directly to the registration form.
+        </div>
+      </div>
+      <div class="modal-success" id="modalSuccess">
+        <div class="success-icon">✉️</div>
+        <h4>Link Sent!</h4>
+        <p>A registration link has been sent to <strong id="sentEmailDisplay"></strong>.<br>Please check your inbox and click the link to begin your registration.</p>
+        <div class="modal-note" style="margin-top:1.2rem; text-align:left;">
+          <strong>Didn't receive it?</strong> Check your spam or junk folder, or contact the school office for assistance.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://ojmgxyylkhgoxqrcwwlh.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_NXMgCWN1Pqj6EXcjEWJS2Q_iFxIhMT5';
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  function openRegisterModal(e) {
+    e.preventDefault();
+    // Reset modal to form state
+    document.getElementById('modalForm').style.display = 'block';
+    document.getElementById('modalSuccess').style.display = 'none';
+    document.getElementById('registerEmail').value = '';
+    const btn = document.getElementById('sendLinkBtn');
+    btn.disabled = false;
+    btn.innerHTML = 'Send My Registration Link <span>→</span>';
+    document.getElementById('registerModal').classList.add('open');
+    setTimeout(() => document.getElementById('registerEmail').focus(), 200);
+  }
+
+  function closeRegisterModal() {
+    document.getElementById('registerModal').classList.remove('open');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('registerModal').addEventListener('click', function(e) {
+    if (e.target === this) closeRegisterModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeRegisterModal();
+  });
+
+  async function sendRegistrationLink() {
+    const email = document.getElementById('registerEmail').value.trim();
+    const btn = document.getElementById('sendLinkBtn');
+
+    if (!email) {
+      showToast('Please enter your email address.', true);
+      document.getElementById('registerEmail').focus();
+      return;
+    }
+
+    // Basic email format check
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('Please enter a valid email address.', true);
+      document.getElementById('registerEmail').focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const { error } = await db.auth.signInWithOtp({
+        email: email,
+        options: {
+          emailRedirectTo: 'https://dismissal-website.vercel.app/register.html'
+        }
+      });
+
+      if (error) throw error;
+
+      // Show success state
+      document.getElementById('sentEmailDisplay').textContent = email;
+      document.getElementById('modalForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+
+    } catch (err) {
+      console.error(err);
+      showToast('Error sending link. Please try again.', true);
+      btn.disabled = false;
+      btn.innerHTML = 'Send My Registration Link <span>→</span>';
+    }
+  }
+
+  function showToast(msg, isError = false) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.background = isError ? '#b71c1c' : '#2e7d32';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+</script>
 
 </body>
 </html>
