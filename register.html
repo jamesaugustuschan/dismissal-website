@@ -359,7 +359,7 @@
       <div class="field-row">
         <div class="field-group">
           <label>Phone Number <span class="req">*</span></label>
-          <input type="tel" id="parent_phone" placeholder="(555) 555-5555" />
+          <input type="tel" id="parent_phone" placeholder="123-456-7890" maxlength="12" inputmode="numeric" />
         </div>
         <div class="field-group">
           <label>Email Address <span class="req">*</span></label>
@@ -629,7 +629,7 @@
           parent_first_name: document.getElementById('parent_first_name').value.trim(),
           parent_last_name: document.getElementById('parent_last_name').value.trim(),
           parent_email: document.getElementById('parent_email').value.trim(),
-          parent_phone: document.getElementById('parent_phone').value.trim(),
+          parent_phone: document.getElementById('parent_phone').value.replace(/\D/g, ''),
           is_active: true
         })
         .select()
@@ -714,6 +714,29 @@
     el.textContent = msg;
     el.className = `status-msg ${type}`;
   }
+
+  // Phone number formatter
+  document.getElementById('parent_phone').addEventListener('input', function(e) {
+    // Strip everything except digits
+    let digits = this.value.replace(/\D/g, '');
+    // Cap at 10 digits
+    digits = digits.slice(0, 10);
+    // Format as XXX-XXX-XXXX
+    if (digits.length <= 3) {
+      this.value = digits;
+    } else if (digits.length <= 6) {
+      this.value = digits.slice(0, 3) + '-' + digits.slice(3);
+    } else {
+      this.value = digits.slice(0, 3) + '-' + digits.slice(3, 6) + '-' + digits.slice(6);
+    }
+  });
+  // Prevent non-numeric key presses
+  document.getElementById('parent_phone').addEventListener('keydown', function(e) {
+    const allowed = ['Backspace','Delete','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Tab','Enter'];
+    if (!allowed.includes(e.key) && !/^\d$/.test(e.key)) {
+      e.preventDefault();
+    }
+  });
 </script>
 
 </body>
